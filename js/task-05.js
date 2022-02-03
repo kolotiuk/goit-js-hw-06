@@ -4,7 +4,7 @@ const refs = {
 };
 
 refs.input.addEventListener("input", (event) => {
-    return (refs.output.textContent = event.currentTarget.value
+    refs.output.textContent = event.currentTarget.value
         ? event.currentTarget.value
-        : "Anonymous");
+        : "Anonymous";
 });
