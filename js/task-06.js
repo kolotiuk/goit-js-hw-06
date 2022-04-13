@@ -1,17 +1,17 @@
-const input = document.querySelector("#validation-input");
+const inputRef = document.querySelector('#validation-input');
 
-const inputData = Number(input.dataset.length);
+inputRef.addEventListener('blur', () => {
+    const inputLength = Number(inputRef.dataset.length);
+    const inputValue = inputRef.value.length;
 
-input.addEventListener("blur", () => {
-    const inputLength = input.value.length;
-    if (inputLength !== inputData) {
-        replaceClasses("invalid", "valid");
+    if (inputValue === inputLength) {
+        replaceClasses('valid', 'invalid');
         return;
     }
-    replaceClasses("valid", "invalid");
+    replaceClasses('invalid', 'valid');
 });
 
-const replaceClasses = (classToAdd, classToRemove) => {
-    input.classList.remove(classToRemove);
-    input.classList.add(classToAdd);
-};
+function replaceClasses(valid, invalid) {
+    inputRef.classList.add(valid);
+    inputRef.classList.remove(invalid);
+}
