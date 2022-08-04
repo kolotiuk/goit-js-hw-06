@@ -1,31 +1,32 @@
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
+const boxesRef = document.querySelector("#boxes");
+const inputRef = document.querySelector('[type="number"]');
+const btnCreateRef = document.querySelector("[data-create]");
+const btnDestroyRef = document.querySelector("[data-destroy]");
 
-const inputNumber = document.querySelector('[type="number"]');
-const btnCreate = document.querySelector('[data-create]');
-const btnDestroy = document.querySelector('[data-destroy]');
-const boxes = document.querySelector('#boxes');
-
-btnCreate.addEventListener('click', createBoxes);
-btnDestroy.addEventListener('click', destroyBoxes);
-
-function createBoxes(amount) {
-    amount = inputNumber.value;
-    const boxArrays = [];
+const createBoxes = (amount) => {
+    amount = inputRef.value;
+    const arr = [];
     let size = 30;
-    for (let i = 0; i < amount; i++) {
-        const div = document.createElement('div');
-        div.style.width = `${size}px`;
-        div.style.height = `${size}px`;
-        div.style.backgroundColor = getRandomHexColor();
+
+    for (let i = 0; i < amount; i += 1) {
+        const createDiv = document.createElement("div");
+        createDiv.style.width = `${size}px`;
+        createDiv.style.height = `${size}px`;
+        createDiv.style.backgroundColor = getRandomHexColor();
         size += 10;
-        boxArrays.push(div);
+
+        arr.push(createDiv);
+        console.log("~ arr", arr);
     }
-    inputNumber.value = '';
-    boxes.append(...boxArrays);
+    inputRef.value = "";
+    boxesRef.append(...arr);
+};
+
+btnCreateRef.addEventListener("click", createBoxes);
+
+function getRandomHexColor() {
+    return `#${Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, 0)}`;
 }
 
-function destroyBoxes() {
-    boxes.innerHTML = '';
-}
