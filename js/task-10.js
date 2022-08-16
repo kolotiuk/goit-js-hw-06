@@ -16,7 +16,6 @@ const createBoxes = (amount) => {
         size += 10;
 
         arr.push(createDiv);
-        console.log("~ arr", arr);
     }
     inputRef.value = "";
     boxesRef.append(...arr);
@@ -24,9 +23,16 @@ const createBoxes = (amount) => {
 
 btnCreateRef.addEventListener("click", createBoxes);
 
+const destroyBoxes = () => {
+    boxesRef.innerHTML = "";
+};
+
+btnDestroyRef.addEventListener("click", destroyBoxes);
+
 function getRandomHexColor() {
     return `#${Math.floor(Math.random() * 16777215)
         .toString(16)
         .padStart(6, 0)}`;
 }
+
 
